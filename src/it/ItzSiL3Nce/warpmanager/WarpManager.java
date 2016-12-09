@@ -33,8 +33,7 @@ public class WarpManager extends JavaPlugin {
 
 	public static final File CONFIG = new File("plugins/WarpManager/config.yml");
 	public static final File WARPS = new File("plugins/WarpManager/warps.yml");
-	public static final File ESSWARPS = new File(
-			"plugins/WarpManager/esswarps.yml");
+	public static final File ESSWARPS = new File("plugins/WarpManager/esswarps.yml");
 
 	private void sendMessage(String s) {
 		getServer().getConsoleSender().sendMessage(s);
