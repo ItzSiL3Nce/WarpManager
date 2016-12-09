@@ -1,0 +1,12 @@
+'Disable essentials:(e)warp(s)': true
+'Bypass permission': warpmanager.essentials.warp
+
+# Permission: warpmanager.go.warpname or essentials.warp.warpname or being OP.
+# Disabling this is recommended to making warp creation easier.
+# However if this is enabled you can have warps accessible only by OPs and by users who you want to give permission to.
+'Require permission for each warp': true
+
+# When displaying warps list each warp is clickable
+# Disable this feature if your server doesn't support md_5 chat API.
+'Enable warp click': true
+'Hide warp if no permission': true

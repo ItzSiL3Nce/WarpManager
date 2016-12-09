@@ -1,0 +1,46 @@
+author: ItzSiL3Nce
+main: it.ItzSiL3Nce.warpmanager.WarpManager
+version: 1.5
+name: WarpManager
+commands:
+  warp:
+    description: Essentials' command overload.
+    usage: /<command> <name>
+    aliases: warps
+  ewarp:
+    description: Essentials' enemy territory command overload. (Prevents factions to break and users to use the default /ewarp(s))
+    usage: /<command> <name>
+    aliases: ewarps
+  warpmanager:
+    description: WarpManager's main command.
+    usage: /<command> [help/setwarp/delwarp/go/list/convert [<name>]]
+    aliases: wm
+permissions:
+  warpmanager.*:
+    default: op
+    children:
+      warpmanager.list: true
+      warpmanager.go.*: true
+      warpmanager.delwarp: true
+      warpmanager.setwarp: true
+      warpmanager.help: true
+      warpmanager.convert: true
+    description: Allows the possessor to do everything you can do with this plugin.
+  warpmanager.list:
+    default: true
+    description: Allows the possessor to use the /warpmanager list (or /warps) command.
+  warpmanager.go.*:
+    default: op
+    description: Effective only if 'Require permission for each warp' is enabled, allows the possessor to access any warp.
+  warpmanager.delwarp:
+    default: op
+    description: Allows the possessor to use the /warpmanager delwarp command.
+  warpmanager.setwarp:
+    default: op
+    description: Allows the possessor to use the /warpmanager setwarp command.
+  warpmanager.help:
+    default: op
+    description: Allows the possessor to use the /warpmanager help command.
+  warpmanager.convert:
+    default: op
+    description: Allows the possessor to use the /warpmanager convert command.

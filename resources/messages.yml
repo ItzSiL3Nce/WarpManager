@@ -1,0 +1,19 @@
+No permission: '&cNo permission!'
+Bad Syntax: '&cYou used a wrong syntax for this command!'
+Only by player: '&cThis command can be executed only by a player.'
+
+No warps: '&6There aren''t any warps yet.'
+Invalid warp: '&bWarp &e%s &bdoesn''t exist!'
+Error on teleportation: '&bUnable to teleport to &e%s&b!'
+Teleport: '&bWarping to &e%s&b.'
+
+Warp set: '&6Warp &e%s &6set.'
+Cannot set: '&6Unable to set the warp &e%s&6!'
+Warp deleted: '&6Warp &e%s &6deleted.'
+Cannot delete: '&6Unable to delete the warp &e%s&6!'
+
+# This message will show only if "Enable warp click" in config.yml is true
+Click a warp: '&fClick a warp to automatically teleport to it:'
+Command: '&fUse &6/warp <name>'
+
+Warp prefix in list: '&a'
