@@ -4,6 +4,8 @@ import it.ItzSiL3Nce.warpmanager.commands.Commands;
 import it.ItzSiL3Nce.warpmanager.configuration.Config;
 import it.ItzSiL3Nce.warpmanager.configuration.Config.Messages;
 import it.ItzSiL3Nce.warpmanager.listeners.PlayerCommandPreprocessListener;
+import it.ItzSiL3Nce.warpmanager.listeners.PlayerInteractListener;
+import it.ItzSiL3Nce.warpmanager.listeners.SignChangeListener;
 
 import java.io.File;
 import java.io.IOException;
@@ -25,6 +27,7 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class WarpManager extends JavaPlugin {
@@ -44,14 +47,18 @@ public class WarpManager extends JavaPlugin {
 		sendMessage(ChatColor.BLACK + "[" + ChatColor.AQUA + "WarpManager"
 				+ ChatColor.BLACK + "] " + ChatColor.GOLD + "Enabling...");
 		instance = this;
+		PluginManager pm = getServer().getPluginManager();
 		if (!CONFIG.exists())
 			saveDefaultConfig();
+		if(!ESSWARPS.exists() && new File("plugins/Essentials/warps/").exists())
+			convertWarps(getServer().getConsoleSender());
 		Messages.init();
 		getCommand("warpmanager").setExecutor(Commands.MANAGER);
 		getCommand("warp").setExecutor(Commands.WARP);
 		getCommand("ewarp").setExecutor(Commands.WARP);
-		getServer().getPluginManager().registerEvents(
-				new PlayerCommandPreprocessListener(), this);
+		pm.registerEvents(new PlayerCommandPreprocessListener(), this);
+		pm.registerEvents(new PlayerInteractListener(), this);
+		pm.registerEvents(new SignChangeListener(), this);
 		sendMessage(ChatColor.BLACK + "[" + ChatColor.AQUA + "WarpManager"
 				+ ChatColor.BLACK + "] " + ChatColor.GOLD + "Enabled!");
 	}
@@ -232,6 +239,13 @@ public class WarpManager extends JavaPlugin {
 		if (CONFIG.exists())
 			return Config.get(CONFIG).contains("Hide warp if no permission")
 					&& Config.get(CONFIG).getBoolean("Hide warp if no permission");
+		return true;
+	}
+	
+	public static final boolean signEnabled() {
+		if (CONFIG.exists())
+			return Config.get(CONFIG).contains("Enable warp sign")
+					&& Config.get(CONFIG).getBoolean("Enable warp sign");
 		return true;
 	}
 }

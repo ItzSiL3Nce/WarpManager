@@ -1,6 +1,6 @@
 author: ItzSiL3Nce
 main: it.ItzSiL3Nce.warpmanager.WarpManager
-version: 1.5
+version: 1.6
 name: WarpManager
 commands:
   warp:
@@ -25,6 +25,7 @@ permissions:
       warpmanager.setwarp: true
       warpmanager.help: true
       warpmanager.convert: true
+      warpmanager.sign.*: true
     description: Allows the possessor to do everything you can do with this plugin.
   warpmanager.list:
     default: true
@@ -44,3 +45,15 @@ permissions:
   warpmanager.convert:
     default: op
     description: Allows the possessor to use the /warpmanager convert command.
+  warpmanager.sign.*:
+    default: op
+    children:
+      warpmanager.sign.create: true
+      warpmanager.sign.destroy: true
+    description: Allows the possessor to create and destroy warp signs.
+  warpmanager.sign.create:
+    default: op
+    description: Allows the possessor to create warp signs.
+  warpmanager.sign.destroy:
+    default: op
+    description: Allows the possessor to destroy warp signs.
