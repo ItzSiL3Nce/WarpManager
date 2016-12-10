@@ -116,7 +116,7 @@ public class WarpManager extends JavaPlugin {
 			
 			Collections.sort(unsortedWarps);
 			for(String sx: unsortedWarps){
-				tc = new TextComponent("§a" + sx);
+				tc = new TextComponent(Messages.getMessage("Warp prefix in list") + sx);
 				tc.setClickEvent(new ClickEvent(
 						ClickEvent.Action.RUN_COMMAND,
 						"/warpmanager go " + sx));

@@ -11,14 +11,14 @@ public class WarpTeleport {
 	
 	public static void to(Player p, Warp w, String n){
 		if(w != null && w.getTeleportPosition() != null){
-			p.sendMessage(Messages.getMessage("Teleport"));
+			p.sendMessage(Messages.getMessage("Teleport", n));
 			try {
 				p.teleport(w.getTeleportPosition());
 			} catch(Exception e){
-				p.sendMessage(Messages.getMessage("Error on teleportation"));
+				p.sendMessage(Messages.getMessage("Error on teleportation", n));
 				e.printStackTrace();
 			}
-		} else p.sendMessage(Messages.getMessage("Invalid warp"));
+		} else p.sendMessage(Messages.getMessage("Invalid warp", n));
 	}
 	
 	public static void to(Player p, Warp w){
