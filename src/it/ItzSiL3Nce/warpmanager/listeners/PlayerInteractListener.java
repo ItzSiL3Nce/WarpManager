@@ -2,7 +2,7 @@ package it.ItzSiL3Nce.warpmanager.listeners;
 
 import it.ItzSiL3Nce.warpmanager.Warp;
 import it.ItzSiL3Nce.warpmanager.WarpManager;
-import it.ItzSiL3Nce.warpmanager.commands.use.WarpTeleport;
+import it.ItzSiL3Nce.warpmanager.WarpTeleport;
 
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;

@@ -13,3 +13,4 @@
 
 # If enabled, Essentials' warp signs won't work anymore. (They will work if Essentials' warps were converted)
 'Enable warp sign': true
+'Sign first line': '&1[Warp]'

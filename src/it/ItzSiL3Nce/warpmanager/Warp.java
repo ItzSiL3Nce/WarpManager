@@ -1,5 +1,7 @@
 package it.ItzSiL3Nce.warpmanager;
 
+import it.ItzSiL3Nce.warpmanager.events.WarpDeleteEvent;
+import it.ItzSiL3Nce.warpmanager.events.WarpSetEvent;
 import it.ItzSiL3Nce.warpmanager.exceptions.InvalidWarpException;
 
 import java.io.File;
@@ -19,6 +21,10 @@ public class Warp {
 	private String warpname = "";
 
 	private Warp() {}
+	protected Warp(Location location, String warpname) {
+		this.location = location;
+		this.warpname = warpname;
+	}
 
 	public static final class WarpInfo {
 		
@@ -78,7 +84,11 @@ public class Warp {
 	}
 	
 	public static boolean delete(String warpname) {
-		return generalDel(WarpManager.WARPS, warpname) || generalDel(WarpManager.ESSWARPS, warpname);
+		WarpDeleteEvent wdel = new WarpDeleteEvent(Warp.get(warpname), "Unspecified");
+		WarpManager.pm.callEvent(wdel);
+		if(!wdel.isCancelled())
+			return generalDel(WarpManager.WARPS, warpname) || generalDel(WarpManager.ESSWARPS, warpname);
+		return false;
 	}
 
 	private static Warp generalGet(File f, String warpname) {
@@ -125,7 +135,20 @@ public class Warp {
 	}
 
 	@SafeVarargs
+	private static String getCreator(Map<String, Object>...params) {
+		for(Map<String, Object> m: params){
+			if(m.containsKey("Creator"))
+				return m.get("Creator").toString();
+		}
+		return "Unspecified";
+	}
+	
+	@SafeVarargs
 	public static boolean set(String warpname, Location loc, Map<String, Object>...params) {
+		WarpSetEvent wset = new WarpSetEvent(new Warp(loc, warpname), getCreator(params));
+		WarpManager.pm.callEvent(wset);
+		if(wset.isCancelled())
+			return false;
 		if (warpname != null && !warpname.trim().isEmpty() && loc != null) {
 			File f = new File("plugins/WarpManager/");
 			if(!f.exists()) f.mkdirs();

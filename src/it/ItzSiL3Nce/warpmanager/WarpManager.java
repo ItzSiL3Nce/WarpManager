@@ -33,6 +33,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class WarpManager extends JavaPlugin {
 
 	public static WarpManager instance;
+	public static PluginManager pm;
 
 	public static final File CONFIG = new File("plugins/WarpManager/config.yml");
 	public static final File WARPS = new File("plugins/WarpManager/warps.yml");
@@ -47,7 +48,7 @@ public class WarpManager extends JavaPlugin {
 		sendMessage(ChatColor.BLACK + "[" + ChatColor.AQUA + "WarpManager"
 				+ ChatColor.BLACK + "] " + ChatColor.GOLD + "Enabling...");
 		instance = this;
-		PluginManager pm = getServer().getPluginManager();
+		pm = getServer().getPluginManager();
 		if (!CONFIG.exists())
 			saveDefaultConfig();
 		if(!ESSWARPS.exists() && new File("plugins/Essentials/warps/").exists())
@@ -126,7 +127,7 @@ public class WarpManager extends JavaPlugin {
 				tc = new TextComponent(Messages.getMessage("Warp prefix in list") + sx);
 				tc.setClickEvent(new ClickEvent(
 						ClickEvent.Action.RUN_COMMAND,
-						"/warpmanager go " + sx));
+						"/warpmanager go " + ChatColor.stripColor(sx)));
 				warps.add(tc);
 				warps.add(new TextComponent("§f, "));
 			}
@@ -248,4 +249,11 @@ public class WarpManager extends JavaPlugin {
 					&& Config.get(CONFIG).getBoolean("Enable warp sign");
 		return true;
 	}
+	
+	public static final String signFirstLine() {
+		if (CONFIG.exists() && Config.get(CONFIG).contains("Sign first line"))
+			return ChatColor.translateAlternateColorCodes('&', Config.get(CONFIG).getString("Sign first line"));
+		return "§1[Warp]";
+	}
 }
+

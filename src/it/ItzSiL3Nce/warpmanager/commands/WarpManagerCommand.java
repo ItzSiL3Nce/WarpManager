@@ -1,10 +1,10 @@
 package it.ItzSiL3Nce.warpmanager.commands;
 
 import it.ItzSiL3Nce.warpmanager.Warp;
+import it.ItzSiL3Nce.warpmanager.WarpTeleport;
 import it.ItzSiL3Nce.warpmanager.Warp.WarpInfo;
 import it.ItzSiL3Nce.warpmanager.WarpManager;
 import it.ItzSiL3Nce.warpmanager.commands.Commands.CommandsEnum;
-import it.ItzSiL3Nce.warpmanager.commands.use.WarpTeleport;
 import it.ItzSiL3Nce.warpmanager.configuration.Config.Messages;
 
 import org.bukkit.command.Command;

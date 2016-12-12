@@ -17,11 +17,11 @@ public class SignChangeListener implements Listener {
 	public void onSignChange(SignChangeEvent e){
 		Player p = e.getPlayer();
 		if((p.isOp() || p.hasPermission("warpmanager.sign.create")) && WarpManager.signEnabled()){
-			if(ChatColor.stripColor(e.getLine(0)).equalsIgnoreCase("[Warp]")){
+			if(ChatColor.stripColor(e.getLine(0)).equalsIgnoreCase(ChatColor.stripColor(WarpManager.signFirstLine()))){
 				if(Warp.exists(e.getLine(1)))
-					e.setLine(0, "§1[Warp]");
+					e.setLine(0, WarpManager.signFirstLine());
 				else {
-					e.setLine(0, "§4[Warp]");
+					e.setLine(0, "§4Invalid Warp");
 					p.sendMessage(Messages.getMessage("Invalid warp", e.getLine(1)));
 				}
 			}
